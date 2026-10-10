@@ -42,3 +42,9 @@
 - [x] Garantir mouse interativo no canvas, z-index local e CTAs/navbar/grade clicáveis acima das cenas. Preservar o layout e os conteúdos do ZIP. Evidência: hit-test e clique real nos seis cenários em `research/spline-validation/results.json`.
 - [x] Em telas abaixo de 768px ou com movimento reduzido, não montar WebGL e conservar arte de fallback responsiva. Erro de cena não deve derrubar a página. Evidência: zero requests de cena em mobile/reduced-motion e fallback após HTTP 503 induzido.
 - [x] Executar `npm run check`, oxlint, testes e build; registrar evidência e entregar ZIP atualizado sem secrets, caches ou dependências. Tipos, lint dos arquivos alterados, seis testes e build passaram. Lint do frontend inteiro tem três erros herdados fora do escopo, documentados em `INTEGRACAO_SPLINE.md`; aviso de chunks grandes foi preservado.
+
+## Global Spline cloud
+- [x] Uma única cena aprovada global fixed 100vw/100vh z-index -10, sem clipping em seções ou blend screen.
+- [x] Camada passiva transparente click-through; controles, cards, navbar e formulário interativos; vidro dark blur 24px.
+- [x] Fallback mobile/reduced-motion/erro, preservação de rotas e conteúdo, teclado e sem overflow.
+- [x] Tipos, oxlint, testes, build, validação de canvas/cliques e scan antes de commit/push/PR.

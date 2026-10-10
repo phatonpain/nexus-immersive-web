@@ -7,7 +7,7 @@
 :root {
   font-family: "DM Sans", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: #f8f8fb;
-  background: #09090b;
+  background: transparent;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -1868,64 +1868,52 @@ html.lenis.lenis-stopped { overflow: hidden; }
 }
 @import './dark-premium.css';
 
-/* Contain interactive 3D inside its own stage, below actionable content. */
-.hero,
-.services-section { isolation: isolate; }
-.hero-copy,
-.hero-actions,
-.scroll-cue,
-.services-grid { position: relative; z-index: 3; pointer-events: auto; }
-.scroll-cue { position: absolute; }
-.hero-visual { z-index: 1; }
-.hero-visual > .tech-strip { z-index: 2; }
-.visual-orbit,
-.hero-visual::before,
-.hero::before,
-.services-section::before { pointer-events: none; }
-.services-section .heading-aside > p,
-.services-section .heading-aside > .inline-link { position: relative; z-index: 3; }
-.spline-stage {
-  position: relative;
-  isolation: isolate;
-  width: 100%;
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid var(--line-strong);
-  border-radius: 32px;
-  background: radial-gradient(ellipse at center, rgba(139,92,246,.1), transparent 72%), var(--paper);
+/* Global scene: root isolation keeps negative z-index above the document backdrop. */
+html, html.dark, body, #root, .site-shell, .site-shell main {
+  background: transparent !important;
+  background-image: none !important;
 }
-.spline-stage--hero { max-width: 560px; aspect-ratio: 1 / 1; }
-.spline-stage--services { margin-top: 24px; aspect-ratio: 4 / 3; }
-.spline-fallback { position: absolute; z-index: 0; inset: 0; pointer-events: none; }
-.spline-fallback > .artwork-slot { width: 100%; height: 100%; margin: 0; border: 0; border-radius: inherit; }
-.spline-stage:has(> .spline-wrapper.is-loaded) > .spline-fallback { visibility: hidden; }
-.spline-stage > .spline-wrapper { transition: opacity .4s ease; }
-.spline-stage .spline-wrapper > div { width: 100%; height: 100%; }
-.spline-stage--services .spline-canvas-container {
-  flex: 0 0 256%;
-  width: 256% !important;
-  height: 256% !important;
-  transform: scale(.390625);
+#root { position: relative; isolation: isolate; min-height: 100vh; }
+.global-spline-background { background: #07090d; }
+.global-spline-fallback {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(7,9,13,.8), rgba(7,9,13,.15)), url('/hero-custom.jpg') center / cover;
+  pointer-events: none;
 }
-.spline-stage .spline-wrapper canvas {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  pointer-events: auto;
-  touch-action: pan-y;
+.global-spline-canvas { position: absolute !important; inset: 0; opacity: 0; }
+.global-spline-background[data-spline-state="ready"] .global-spline-canvas { opacity: 1; }
+.global-spline-background[data-spline-state="ready"] .global-spline-fallback { visibility: hidden; }
+.global-spline-canvas canvas { display: block; width: 100% !important; height: 100% !important; pointer-events: auto; touch-action: pan-y; }
+#root::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -9;
+  pointer-events: none;
+  background: linear-gradient(90deg, rgba(7,9,13,.88), rgba(7,9,13,.34) 65%, rgba(7,9,13,.25));
 }
+.site-shell, .site-shell main { pointer-events: none; }
+.site-shell :is(section, .intro-strip, .work-section, .plans-section, .faq-section, .site-footer, .services-grid) {
+  background: transparent !important;
+}
+.site-shell :is(a, button, input, select, textarea, label, form, nav, .site-header, .service-card, .plan-card, .project-link),
+[role="dialog"], [data-slot="dialog-overlay"], [data-slot="dialog-content"] { pointer-events: auto; }
+.site-header, .site-header.is-scrolled, .hero-actions, .nav-cta, .plan-cta, .contact-form .button { z-index: 50; }
+.hero-actions { position: relative; }
+.site-header, .site-header.is-scrolled, .service-card, .plan-card, .contact-form-card, .faq-item, .main-nav.is-open {
+  background: rgba(12,15,24,.68) !important;
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(167,139,250,.18) !important;
+  box-shadow: 0 16px 48px -24px rgba(139,92,246,.24);
+}
+.hero-copy { background: transparent; }
+.hero-scene-space { min-height: 480px; pointer-events: none; }
+.hero > .tech-strip { grid-column: 1 / -1; width: min(100%, 600px); margin-inline: auto; }
+.noise-overlay { z-index: 49; pointer-events: none; }
 @media (max-width: 767px) {
-  .spline-stage > .spline-wrapper { display: none !important; }
-  .spline-stage { border-radius: 24px; }
-  .spline-stage--hero { max-width: 440px; aspect-ratio: 4 / 5; }
-  .spline-stage--services { aspect-ratio: 16 / 9; }
+  .hero { grid-template-columns: 1fr; }
+  .hero-scene-space { display: none; }
+  #root::after { background: rgba(7,9,13,.78); }
 }
-@media (prefers-reduced-motion: reduce) {
-  .spline-stage > .spline-wrapper { display: none !important; transition: none; }
-}
-
-
-
-.site-shell { pointer-events: none; }
-.site-shell * { pointer-events: auto; }
-
