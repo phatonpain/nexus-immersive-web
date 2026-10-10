@@ -1,0 +1,200 @@
+{
+  "hero": {
+    "source": "art-hires/hero-upscaled.png",
+    "source_size": [
+      1664,
+      2080
+    ],
+    "variants": [
+      {
+        "width": 480,
+        "height": 600,
+        "file": "hero-480.webp",
+        "kb": 21
+      },
+      {
+        "width": 960,
+        "height": 1200,
+        "file": "hero-960.webp",
+        "kb": 55
+      },
+      {
+        "width": 1440,
+        "height": 1800,
+        "file": "hero-1440.webp",
+        "kb": 92
+      },
+      {
+        "width": 1664,
+        "height": 2080,
+        "file": "hero-1664.webp",
+        "kb": 111
+      }
+    ]
+  },
+  "process": {
+    "source": "art-hires/process-upscaled.png",
+    "source_size": [
+      1664,
+      2080
+    ],
+    "variants": [
+      {
+        "width": 480,
+        "height": 600,
+        "file": "process-480.webp",
+        "kb": 48
+      },
+      {
+        "width": 960,
+        "height": 1200,
+        "file": "process-960.webp",
+        "kb": 129
+      },
+      {
+        "width": 1440,
+        "height": 1800,
+        "file": "process-1440.webp",
+        "kb": 221
+      },
+      {
+        "width": 1664,
+        "height": 2080,
+        "file": "process-1664.webp",
+        "kb": 264
+      }
+    ]
+  },
+  "values": {
+    "source": "art-hires/values-upscaled.png",
+    "source_size": [
+      2080,
+      1664
+    ],
+    "variants": [
+      {
+        "width": 640,
+        "height": 512,
+        "file": "values-640.webp",
+        "kb": 9
+      },
+      {
+        "width": 1280,
+        "height": 1024,
+        "file": "values-1280.webp",
+        "kb": 31
+      },
+      {
+        "width": 1600,
+        "height": 1280,
+        "file": "values-1600.webp",
+        "kb": 46
+      },
+      {
+        "width": 2080,
+        "height": 1664,
+        "file": "values-2080.webp",
+        "kb": 71
+      }
+    ]
+  },
+  "plans": {
+    "source": "art-hires/plans-upscaled.png",
+    "source_size": [
+      2176,
+      1632
+    ],
+    "variants": [
+      {
+        "width": 480,
+        "height": 360,
+        "file": "plans-480.webp",
+        "kb": 6
+      },
+      {
+        "width": 960,
+        "height": 720,
+        "file": "plans-960.webp",
+        "kb": 15
+      },
+      {
+        "width": 1600,
+        "height": 1200,
+        "file": "plans-1600.webp",
+        "kb": 30
+      },
+      {
+        "width": 2176,
+        "height": 1632,
+        "file": "plans-2176.webp",
+        "kb": 46
+      }
+    ]
+  },
+  "services": {
+    "source": "client/public/images/canva-services.jpg",
+    "source_size": [
+      1600,
+      899
+    ],
+    "variants": [
+      {
+        "width": 480,
+        "height": 270,
+        "file": "services-480.webp",
+        "kb": 17
+      },
+      {
+        "width": 800,
+        "height": 450,
+        "file": "services-800.webp",
+        "kb": 38
+      },
+      {
+        "width": 1200,
+        "height": 674,
+        "file": "services-1200.webp",
+        "kb": 70
+      },
+      {
+        "width": 1600,
+        "height": 899,
+        "file": "services-1600.webp",
+        "kb": 105
+      }
+    ]
+  },
+  "portfolio": {
+    "source": "art-hires/portfolio-upscaled.png",
+    "source_size": [
+      2688,
+      1152
+    ],
+    "variants": [
+      {
+        "width": 640,
+        "height": 274,
+        "file": "portfolio-640.webp",
+        "kb": 31
+      },
+      {
+        "width": 1280,
+        "height": 549,
+        "file": "portfolio-1280.webp",
+        "kb": 92
+      },
+      {
+        "width": 1920,
+        "height": 823,
+        "file": "portfolio-1920.webp",
+        "kb": 170
+      },
+      {
+        "width": 2560,
+        "height": 1097,
+        "file": "portfolio-2560.webp",
+        "kb": 257
+      }
+    ]
+  }
+}

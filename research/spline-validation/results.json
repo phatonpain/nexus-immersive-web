@@ -1,0 +1,277 @@
+[
+  {
+    "width": 1280,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "stages": [
+      {
+        "stage": "hero",
+        "state": "ready",
+        "type": "orb",
+        "canvas": true,
+        "canvasHit": true,
+        "pointerEvents": "auto",
+        "fallbackVisible": false,
+        "width": 560,
+        "height": 560
+      },
+      {
+        "stage": "services",
+        "state": "ready",
+        "type": "diagram",
+        "canvas": true,
+        "canvasHit": true,
+        "pointerEvents": "auto",
+        "fallbackVisible": false,
+        "width": 390,
+        "height": 292.5
+      }
+    ],
+    "ctaHits": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "ctaClick": true,
+    "horizontalOverflow": false,
+    "sceneRequests": [
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode",
+      "https://prod.spline.design/4BQyfdtUZkZJQrYO/scene.splinecode",
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode",
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode",
+      "https://prod.spline.design/4BQyfdtUZkZJQrYO/scene.splinecode"
+    ],
+    "pageErrors": []
+  },
+  {
+    "width": 768,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "stages": [
+      {
+        "stage": "hero",
+        "state": "ready",
+        "type": "orb",
+        "canvas": true,
+        "canvasHit": true,
+        "pointerEvents": "auto",
+        "fallbackVisible": false,
+        "width": 560,
+        "height": 560
+      },
+      {
+        "stage": "services",
+        "state": "ready",
+        "type": "diagram",
+        "canvas": true,
+        "canvasHit": true,
+        "pointerEvents": "auto",
+        "fallbackVisible": false,
+        "width": 278.40625,
+        "height": 208.796875
+      }
+    ],
+    "ctaHits": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "ctaClick": true,
+    "horizontalOverflow": false,
+    "sceneRequests": [
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode",
+      "https://prod.spline.design/4BQyfdtUZkZJQrYO/scene.splinecode",
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode"
+    ],
+    "pageErrors": []
+  },
+  {
+    "width": 390,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "stages": [
+      {
+        "stage": "hero",
+        "state": "static",
+        "type": null,
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 358,
+        "height": 447.5
+      },
+      {
+        "stage": "services",
+        "state": "static",
+        "type": null,
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 358,
+        "height": 201.375
+      }
+    ],
+    "ctaHits": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "ctaClick": true,
+    "horizontalOverflow": false,
+    "sceneRequests": [],
+    "pageErrors": []
+  },
+  {
+    "width": 320,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "stages": [
+      {
+        "stage": "hero",
+        "state": "static",
+        "type": null,
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 288,
+        "height": 360
+      },
+      {
+        "stage": "services",
+        "state": "static",
+        "type": null,
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 288,
+        "height": 162
+      }
+    ],
+    "ctaHits": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "ctaClick": true,
+    "horizontalOverflow": false,
+    "sceneRequests": [],
+    "pageErrors": []
+  },
+  {
+    "width": 1280,
+    "reducedMotion": true,
+    "inducedFailure": false,
+    "stages": [
+      {
+        "stage": "hero",
+        "state": "static",
+        "type": null,
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 560,
+        "height": 560
+      },
+      {
+        "stage": "services",
+        "state": "static",
+        "type": null,
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 390,
+        "height": 292.5
+      }
+    ],
+    "ctaHits": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "ctaClick": true,
+    "horizontalOverflow": false,
+    "sceneRequests": [],
+    "pageErrors": []
+  },
+  {
+    "width": 1280,
+    "reducedMotion": false,
+    "inducedFailure": true,
+    "stages": [
+      {
+        "stage": "hero",
+        "state": "error",
+        "type": "orb",
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 560,
+        "height": 560
+      },
+      {
+        "stage": "services",
+        "state": "error",
+        "type": "diagram",
+        "canvas": false,
+        "canvasHit": false,
+        "pointerEvents": null,
+        "fallbackVisible": true,
+        "width": 390,
+        "height": 292.5
+      }
+    ],
+    "ctaHits": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      true
+    ],
+    "ctaClick": true,
+    "horizontalOverflow": false,
+    "sceneRequests": [
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode",
+      "https://prod.spline.design/4BQyfdtUZkZJQrYO/scene.splinecode"
+    ],
+    "pageErrors": []
+  }
+]

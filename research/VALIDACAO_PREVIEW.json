@@ -1,0 +1,115 @@
+[
+  {
+    "source": "preview",
+    "width": 320,
+    "overflow": false,
+    "dialogs": [
+      "Marca em movimento",
+      "Painel de operação",
+      "Lançamento essencial"
+    ],
+    "menu": "passed",
+    "reduced_motion": {
+      "animation": "none",
+      "delay": "0s",
+      "reduced": true
+    },
+    "six_images": "loaded",
+    "page_errors": []
+  },
+  {
+    "source": "preview",
+    "width": 390,
+    "overflow": false,
+    "dialogs": [
+      "Marca em movimento",
+      "Painel de operação",
+      "Lançamento essencial"
+    ],
+    "menu": "passed",
+    "reduced_motion": {
+      "animation": "none",
+      "delay": "0s",
+      "reduced": true
+    },
+    "six_images": "loaded",
+    "page_errors": []
+  },
+  {
+    "source": "preview",
+    "width": 768,
+    "overflow": false,
+    "dialogs": [
+      "Marca em movimento",
+      "Painel de operação",
+      "Lançamento essencial"
+    ],
+    "menu": "desktop",
+    "reduced_motion": {
+      "animation": "none",
+      "delay": "0s",
+      "reduced": true
+    },
+    "six_images": "loaded",
+    "page_errors": []
+  },
+  {
+    "source": "preview",
+    "width": 1280,
+    "overflow": false,
+    "dialogs": [
+      "Marca em movimento",
+      "Painel de operação",
+      "Lançamento essencial"
+    ],
+    "menu": "desktop",
+    "reduced_motion": {
+      "animation": "none",
+      "delay": "0s",
+      "reduced": true
+    },
+    "six_images": "loaded",
+    "page_errors": []
+  },
+  {
+    "source": "static-build",
+    "width": 390,
+    "overflow": false,
+    "dialogs": [
+      "Marca em movimento",
+      "Painel de operação",
+      "Lançamento essencial"
+    ],
+    "menu": "passed",
+    "reduced_motion": {
+      "animation": "none",
+      "delay": "0s",
+      "reduced": true
+    },
+    "six_images": "loaded",
+    "page_errors": []
+  },
+  {
+    "source": "static-build",
+    "width": 1280,
+    "overflow": false,
+    "dialogs": [
+      "Marca em movimento",
+      "Painel de operação",
+      "Lançamento essencial"
+    ],
+    "menu": "desktop",
+    "reduced_motion": {
+      "animation": "none",
+      "delay": "0s",
+      "reduced": true
+    },
+    "six_images": "loaded",
+    "page_errors": []
+  },
+  {
+    "source": "preview",
+    "fallback_503": "passed",
+    "message": "A arte não carregou; exibindo uma composição de apoio."
+  }
+]

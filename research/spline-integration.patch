@@ -1,0 +1,263 @@
+--- a/client/src/pages/Home.tsx
++++ b/client/src/pages/Home.tsx
+@@ -28,11 +28,15 @@
+ } from "lucide-react";
+ import { ArtworkSlot } from "../components/ArtworkSlot";
+ import { BuilderNode } from "../components/BuilderNode";
+-import { GlassHeroScene } from "../components/GlassHeroScene";
+ import { ParticleBackground } from "../components/ParticleBackground";
+-import { CyberSpline } from "../components/CyberSpline";
+ import { SocialDock } from "../components/SocialDock";
+ import { faqs, plans, processSteps, services, siteDetails } from "../data/site";
++
++const PremiumSpline = lazy(() =>
++  import("../components/PremiumSpline").then(module => ({
++    default: module.PremiumSpline,
++  }))
++);
+ 
+ const ConceptProjects = lazy(() =>
+   import("../components/ConceptProjects").then(module => ({
+@@ -264,7 +268,39 @@
+   );
+ }
+ 
++function useSplineEnabled(ref: { current: HTMLDivElement | null }) {
++  const [enabled, setEnabled] = useState(false);
++
++  useEffect(() => {
++    const target = ref.current;
++    if (!target) return;
++    const media = window.matchMedia(
++      "(min-width: 768px) and (prefers-reduced-motion: no-preference)"
++    );
++    let nearby = false;
++    const update = () => setEnabled(media.matches && nearby);
++    const observer = new IntersectionObserver(
++      ([entry]) => {
++        nearby = entry.isIntersecting;
++        update();
++      },
++      { rootMargin: "320px 0px" }
++    );
++    observer.observe(target);
++    media.addEventListener("change", update);
++    return () => {
++      observer.disconnect();
++      media.removeEventListener("change", update);
++    };
++  }, [ref]);
++
++  return enabled;
++}
++
+ function HeroVisual() {
++  const stageRef = useRef<HTMLDivElement>(null);
++  const splineEnabled = useSplineEnabled(stageRef);
++
+   return (
+     <div
+       className="hero-visual"
+@@ -273,8 +309,16 @@
+     >
+       <div className="visual-orbit orbit-one" aria-hidden="true" />
+       <div className="visual-orbit orbit-two" aria-hidden="true" />
+-      <CyberSpline />
+-      <ArtworkSlot slot="hero" className="hero-artwork-slot" />
++      <div ref={stageRef} className="spline-stage spline-stage--hero">
++        <div className="spline-fallback">
++          <ArtworkSlot slot="hero" className="hero-artwork-slot" />
++        </div>
++        {splineEnabled && (
++          <Suspense fallback={null}>
++            <PremiumSpline type="orb" />
++          </Suspense>
++        )}
++      </div>
+       <TechnologiesStrip />
+     </div>
+   );
+@@ -591,6 +635,8 @@
+ export default function Home() {
+   const [openFaq, setOpenFaq] = useState<number | null>(0);
+   const reduceMotion = useReducedMotion();
++  const servicesStageRef = useRef<HTMLDivElement>(null);
++  const servicesSplineEnabled = useSplineEnabled(servicesStageRef);
+ 
+   return (
+     <div className="site-shell" id="inicio">
+@@ -638,7 +684,21 @@
+               <a className="inline-link" href="#planos">
+                 Encontrar o melhor formato <ArrowRight size={15} />
+               </a>
+-              <ArtworkSlot slot="services" className="services-art-slot" />
++              <div
++                ref={servicesStageRef}
++                className="spline-stage spline-stage--services"
++                role="group"
++                aria-label="Diagrama tridimensional de soluções digitais"
++              >
++                <div className="spline-fallback">
++                  <ArtworkSlot slot="services" className="services-art-slot" />
++                </div>
++                {servicesSplineEnabled && (
++                  <Suspense fallback={null}>
++                    <PremiumSpline type="diagram" />
++                  </Suspense>
++                )}
++              </div>
+             </div>
+           </div>
+           <motion.div
+--- a/client/src/components/PremiumSpline.tsx
++++ b/client/src/components/PremiumSpline.tsx
+@@ -1,4 +1,6 @@
+ import Spline from '@splinetool/react-spline';
++import { useState } from 'react';
++import ErrorBoundary from './ErrorBoundary';
+ 
+ export type SplineType = 'orb' | 'diagram' | 'hacker' | 'cyber';
+ 
+@@ -15,23 +17,28 @@
+ };
+ 
+ export function PremiumSpline({ type, className = '' }: PremiumSplineProps) {
++  const [loaded, setLoaded] = useState(false);
++  const [failed, setFailed] = useState(false);
++
+   return (
+     <div 
+-      className={`spline-wrapper ${className}`}
++      className={`spline-wrapper${loaded && !failed ? ' is-loaded' : ''} ${className}`}
++      data-spline-type={type}
++      data-spline-state={failed ? 'error' : loaded ? 'ready' : 'loading'}
+       style={{
+         position: 'absolute',
+         inset: 0,
+-        zIndex: 0,
+-        pointerEvents: 'auto', // Permite que o mouse interaja com a cena
+-        opacity: 0.9,
+-        mixBlendMode: 'screen', // Garante que o fundo preto do Spline suma no tema Dark
++        zIndex: 1,
++        pointerEvents: loaded && !failed ? 'auto' : 'none',
++        opacity: loaded && !failed ? 0.9 : 0,
++        mixBlendMode: 'screen', // Blend the scene's black background into the dark surface.
+         display: 'flex',
+         justifyContent: 'center',
+         alignItems: 'center',
+         overflow: 'hidden'
+       }}
+     >
+-      {/* Fallback de cor para enquanto o Spline carrega */}
++      {/* Keep the loading surface local to the scene. */}
+       <div 
+         style={{
+           position: 'absolute',
+@@ -40,7 +47,17 @@
+           zIndex: -1
+         }} 
+       />
+-      <Spline scene={SPLINE_URLS[type]} />
++      <ErrorBoundary fallback={null} onError={() => setFailed(true)}>
++        <Spline
++          className="spline-canvas-container"
++          scene={SPLINE_URLS[type]}
++          onLoad={application => {
++            application.setGlobalEvents(false);
++            setLoaded(true);
++          }}
++          renderOnDemand
++        />
++      </ErrorBoundary>
+     </div>
+   );
+ }
+--- a/client/src/components/ErrorBoundary.tsx
++++ b/client/src/components/ErrorBoundary.tsx
+@@ -4,6 +4,8 @@
+ 
+ interface Props {
+   children: ReactNode;
++  fallback?: ReactNode;
++  onError?: () => void;
+ }
+ 
+ interface State {
+@@ -22,6 +24,7 @@
+   }
+ 
+   componentDidCatch(error: Error, info: ErrorInfo) {
++    this.props.onError?.();
+     if (import.meta.env.DEV) {
+       console.error("Erro inesperado na interface pública", error, info);
+     }
+@@ -29,6 +32,7 @@
+ 
+   render() {
+     if (this.state.hasError) {
++      if (this.props.fallback !== undefined) return this.props.fallback;
+       return (
+         <div className="flex min-h-screen items-center justify-center bg-background p-8">
+           <div className="flex w-full max-w-xl flex-col items-center p-8 text-center">
+--- a/client/src/index.css
++++ b/client/src/index.css
+@@ -1868,3 +1868,59 @@
+ }
+ @import './dark-premium.css';
+ 
++/* Contain interactive 3D inside its own stage, below actionable content. */
++.hero,
++.services-section { isolation: isolate; }
++.hero-copy,
++.hero-actions,
++.scroll-cue,
++.services-grid { position: relative; z-index: 3; pointer-events: auto; }
++.scroll-cue { position: absolute; }
++.hero-visual { z-index: 1; }
++.hero-visual > .tech-strip { z-index: 2; }
++.visual-orbit,
++.hero-visual::before,
++.hero::before,
++.services-section::before { pointer-events: none; }
++.services-section .heading-aside > p,
++.services-section .heading-aside > .inline-link { position: relative; z-index: 3; }
++.spline-stage {
++  position: relative;
++  isolation: isolate;
++  width: 100%;
++  min-width: 0;
++  overflow: hidden;
++  border: 1px solid var(--line-strong);
++  border-radius: 32px;
++  background: radial-gradient(ellipse at center, rgba(139,92,246,.1), transparent 72%), var(--paper);
++}
++.spline-stage--hero { max-width: 560px; aspect-ratio: 1 / 1; }
++.spline-stage--services { margin-top: 24px; aspect-ratio: 4 / 3; }
++.spline-fallback { position: absolute; z-index: 0; inset: 0; pointer-events: none; }
++.spline-fallback > .artwork-slot { width: 100%; height: 100%; margin: 0; border: 0; border-radius: inherit; }
++.spline-stage:has(> .spline-wrapper.is-loaded) > .spline-fallback { visibility: hidden; }
++.spline-stage > .spline-wrapper { transition: opacity .4s ease; }
++.spline-stage .spline-wrapper > div { width: 100%; height: 100%; }
++.spline-stage--services .spline-canvas-container {
++  flex: 0 0 256%;
++  width: 256% !important;
++  height: 256% !important;
++  transform: scale(.390625);
++}
++.spline-stage .spline-wrapper canvas {
++  display: block;
++  width: 100% !important;
++  height: 100% !important;
++  pointer-events: auto;
++  touch-action: pan-y;
++}
++@media (max-width: 767px) {
++  .spline-stage > .spline-wrapper { display: none !important; }
++  .spline-stage { border-radius: 24px; }
++  .spline-stage--hero { max-width: 440px; aspect-ratio: 4 / 5; }
++  .spline-stage--services { aspect-ratio: 16 / 9; }
++}
++@media (prefers-reduced-motion: reduce) {
++  .spline-stage > .spline-wrapper { display: none !important; transition: none; }
++}
++

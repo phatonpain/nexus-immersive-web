@@ -1,0 +1,98 @@
+:root {
+  --radius: 0.5rem;
+  --bg-dark: #09090b;
+  --bg-darker: #050505;
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-cyan: #22d3ee;
+  --accent-violet: #8b5cf6;
+  --glass-bg: rgba(25, 25, 30, 0.4);
+  --glass-border: rgba(255, 255, 255, 0.08);
+}
+
+.dark {
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+  background-image: 
+    radial-gradient(circle at center, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+body {
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Typography Fluid */
+h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 1.1;
+  letter-spacing: -0.04em;
+  font-weight: 800;
+  background: linear-gradient(to right, #fff, #a5b4fc);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+h2 {
+  font-size: clamp(2rem, 5vw, 4rem);
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* Sections */
+.site-shell, .hero-section, .services-section, .faq-section, .process-section, .plans-section {
+  background: transparent !important; /* Force override any white bg */
+}
+
+/* Builder Nodes & Glassmorphism */
+.service-card, .plan-card, .faq-item, .contact-card, .browser-card, .browser-content, .browser-toolbar {
+  background: var(--glass-bg) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border) !important;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+  color: var(--text-main);
+}
+
+.service-card:hover {
+  border-color: rgba(139, 92, 246, 0.4) !important;
+  box-shadow: 0 0 40px rgba(139, 92, 246, 0.15);
+}
+
+/* Header & Nav */
+.site-header {
+  background: rgba(9, 9, 11, 0.7);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--glass-border);
+}
+
+.site-header .brand-copy strong, .site-header .main-nav a {
+  color: var(--text-main) !important;
+}
+
+/* Glows */
+.glow-cyan {
+  text-shadow: 0 0 20px rgba(34, 211, 238, 0.5);
+}
+.glow-violet {
+  text-shadow: 0 0 20px rgba(139, 92, 246, 0.5);
+}
+
+/* SVG Noise */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Footer overrides */
+footer {
+  background: var(--bg-darker) !important;
+  border-top: 1px solid var(--glass-border);
+  color: var(--text-muted);
+}
