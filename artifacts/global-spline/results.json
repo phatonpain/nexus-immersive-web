@@ -1,0 +1,232 @@
+[
+  {
+    "width": 1280,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "state": "ready",
+    "geometry": {
+      "position": "fixed",
+      "z": "-10",
+      "width": 1280,
+      "height": 900,
+      "blend": "normal"
+    },
+    "canvasHits": [
+      {
+        "section": ".hero",
+        "points": [
+          {
+            "x": 8,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 1272,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 998.4000000000001,
+            "y": 180,
+            "hit": true
+          }
+        ]
+      },
+      {
+        "section": "#servicos",
+        "points": [
+          {
+            "x": 8,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 1272,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 998.4000000000001,
+            "y": 180,
+            "hit": true
+          }
+        ]
+      },
+      {
+        "section": "#processo",
+        "points": [
+          {
+            "x": 8,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 1272,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 998.4000000000001,
+            "y": 180,
+            "hit": true
+          }
+        ]
+      }
+    ],
+    "requests": [
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode"
+    ],
+    "errors": [],
+    "ctaFormFaqPassed": true
+  },
+  {
+    "width": 768,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "state": "ready",
+    "geometry": {
+      "position": "fixed",
+      "z": "-10",
+      "width": 768,
+      "height": 900,
+      "blend": "normal"
+    },
+    "canvasHits": [
+      {
+        "section": ".hero",
+        "points": [
+          {
+            "x": 8,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 760,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 599.04,
+            "y": 180,
+            "hit": true
+          }
+        ]
+      },
+      {
+        "section": "#servicos",
+        "points": [
+          {
+            "x": 8,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 760,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 599.04,
+            "y": 180,
+            "hit": true
+          }
+        ]
+      },
+      {
+        "section": "#processo",
+        "points": [
+          {
+            "x": 8,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 760,
+            "y": 450,
+            "hit": true
+          },
+          {
+            "x": 599.04,
+            "y": 180,
+            "hit": true
+          }
+        ]
+      }
+    ],
+    "requests": [
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode"
+    ],
+    "errors": [],
+    "ctaFormFaqPassed": true
+  },
+  {
+    "width": 390,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "state": "static",
+    "geometry": {
+      "position": "fixed",
+      "z": "-10",
+      "width": 390,
+      "height": 900,
+      "blend": "normal"
+    },
+    "canvasHits": [],
+    "requests": [],
+    "errors": [],
+    "ctaFormFaqPassed": true
+  },
+  {
+    "width": 320,
+    "reducedMotion": false,
+    "inducedFailure": false,
+    "state": "static",
+    "geometry": {
+      "position": "fixed",
+      "z": "-10",
+      "width": 320,
+      "height": 900,
+      "blend": "normal"
+    },
+    "canvasHits": [],
+    "requests": [],
+    "errors": [],
+    "ctaFormFaqPassed": true
+  },
+  {
+    "width": 1280,
+    "reducedMotion": true,
+    "inducedFailure": false,
+    "state": "static",
+    "geometry": {
+      "position": "fixed",
+      "z": "-10",
+      "width": 1280,
+      "height": 900,
+      "blend": "normal"
+    },
+    "canvasHits": [],
+    "requests": [],
+    "errors": [],
+    "ctaFormFaqPassed": true
+  },
+  {
+    "width": 1280,
+    "reducedMotion": false,
+    "inducedFailure": true,
+    "state": "error",
+    "geometry": {
+      "position": "fixed",
+      "z": "-10",
+      "width": 1280,
+      "height": 900,
+      "blend": "normal"
+    },
+    "canvasHits": [],
+    "requests": [
+      "https://prod.spline.design/DnbfKtN1EqOD6acE/scene.splinecode"
+    ],
+    "errors": [],
+    "ctaFormFaqPassed": true
+  }
+]
