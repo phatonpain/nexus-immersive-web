@@ -18,7 +18,7 @@ export function PremiumSpline({ type, className = '' }: { type: SplineType, clas
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
-    const media = window.matchMedia('(min-width: 768px) and (prefers-reduced-motion: no-preference)');
+    const media = window.matchMedia('(min-width: 1px)');
     const update = () => setEnabled(media.matches);
     update();
     media.addEventListener('change', update);
@@ -53,3 +53,4 @@ export function PremiumSpline({ type, className = '' }: { type: SplineType, clas
     </div>
   );
 }
+
