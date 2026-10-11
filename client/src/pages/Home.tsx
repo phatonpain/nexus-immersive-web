@@ -28,15 +28,8 @@ import {
 } from "lucide-react";
 import { ArtworkSlot } from "../components/ArtworkSlot";
 import { BuilderNode } from "../components/BuilderNode";
-import { ParticleBackground } from "../components/ParticleBackground";
 import { SocialDock } from "../components/SocialDock";
 import { faqs, plans, processSteps, services, siteDetails } from "../data/site";
-
-const PremiumSpline = lazy(() =>
-  import("../components/PremiumSpline").then(module => ({
-    default: module.PremiumSpline,
-  }))
-);
 
 const ConceptProjects = lazy(() =>
   import("../components/ConceptProjects").then(module => ({
@@ -268,62 +261,6 @@ function TechnologiesStrip() {
   );
 }
 
-function useSplineEnabled(ref: { current: HTMLDivElement | null }) {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    const target = ref.current;
-    if (!target) return;
-    const media = window.matchMedia(
-      "(min-width: 300px)"
-    );
-    let nearby = false;
-    const update = () => setEnabled(media.matches && nearby);
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        nearby = entry.isIntersecting;
-        update();
-      },
-      { rootMargin: "320px 0px" }
-    );
-    observer.observe(target);
-    media.addEventListener("change", update);
-    return () => {
-      observer.disconnect();
-      media.removeEventListener("change", update);
-    };
-  }, [ref]);
-
-  return enabled;
-}
-
-function HeroVisual() {
-  const stageRef = useRef<HTMLDivElement>(null);
-  const splineEnabled = useSplineEnabled(stageRef);
-
-  return (
-    <div
-      className="hero-visual"
-      role="group"
-      aria-label="Interface tridimensional conceitual e tecnologias utilizadas"
-    >
-      <div className="visual-orbit orbit-one" aria-hidden="true" />
-      <div className="visual-orbit orbit-two" aria-hidden="true" />
-      <div ref={stageRef} className="spline-stage spline-stage--hero">
-        <div className="spline-fallback">
-          <ArtworkSlot slot="hero" className="hero-artwork-slot" />
-        </div>
-        {splineEnabled && (
-          <Suspense fallback={null}>
-            
-          </Suspense>
-        )}
-      </div>
-      <TechnologiesStrip />
-    </div>
-  );
-}
-
 function ValuesArtwork() {
   const photoRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion() === true;
@@ -388,8 +325,18 @@ function ServiceCard({
       custom={index}
       variants={serviceCardVariants}
       style={reduceMotion ? undefined : { y: springLift }}
-      whileHover={reduceMotion ? undefined : { y: -4, transition: { type: "spring", stiffness: 620, damping: 28 } }}
+      whileHover={reduceMotion ? undefined : { scale: 1.02, y: -4, transition: { type: "spring", stiffness: 300, damping: 24 } }}
     >
+      <img
+        className="bento-art"
+        src={`/assets/${["3d-chip.png", "3d-chart.png", "3d-shield.png"][index % 3]}`}
+        alt=""
+        aria-hidden="true"
+        width={1024}
+        height={1024}
+        loading="lazy"
+        decoding="async"
+      />
       <Icon
         className="service-card-watermark"
         size={96}
@@ -635,17 +582,15 @@ function HeroCopy() {
 export default function Home() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const reduceMotion = useReducedMotion();
-  const servicesStageRef = useRef<HTMLDivElement>(null);
-  const servicesSplineEnabled = useSplineEnabled(servicesStageRef);
 
   return (
     <div className="site-shell" id="inicio">
-      <PremiumSpline type="cyber" />
       <Header />
       <main>
         <section className="hero section-wrap">
           <HeroCopy />
-          <HeroVisual />
+          <div className="hero-scene-space" aria-hidden="true" />
+          <TechnologiesStrip />
           <a className="scroll-cue" href="#servicos">
             <span>ROLE PARA DESCOBRIR</span>
             <ArrowDown size={14} />
@@ -684,21 +629,6 @@ export default function Home() {
               <a className="inline-link" href="#planos">
                 Encontrar o melhor formato <ArrowRight size={15} />
               </a>
-              <div
-                ref={servicesStageRef}
-                className="spline-stage spline-stage--services"
-                role="group"
-                aria-label="Diagrama tridimensional de soluções digitais"
-              >
-                <div className="spline-fallback">
-                  <ArtworkSlot slot="services" className="services-art-slot" />
-                </div>
-                {servicesSplineEnabled && (
-                  <Suspense fallback={null}>
-                    
-                  </Suspense>
-                )}
-              </div>
             </div>
           </div>
           <motion.div
@@ -803,7 +733,21 @@ export default function Home() {
                   className="plan-node"
                   staggerIndex={index}
                 >
-                  <article className={`plan-card${plan.featured ? " plan-featured" : ""}`}>
+                  <motion.article
+                    className={`plan-card${plan.featured ? " plan-featured" : ""}`}
+                    whileHover={reduceMotion ? undefined : { scale: 1.02, y: -4 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 24 }}
+                  >
+                  <img
+                    className="bento-art"
+                    src={`/assets/${["3d-chart.png", "3d-chip.png", "3d-shield.png"][index % 3]}`}
+                    alt=""
+                    aria-hidden="true"
+                    width={1024}
+                    height={1024}
+                    loading="lazy"
+                    decoding="async"
+                  />
                   {plan.featured && (
                     <span className="plan-ribbon">FORMATO EM DESTAQUE</span>
                   )}
@@ -830,7 +774,7 @@ export default function Home() {
                     >
                       Conversar sobre este formato <ArrowRight size={15} />
                     </a>
-                  </article>
+                  </motion.article>
                 </BuilderNode>
               ))}
             </div>
@@ -1024,8 +968,6 @@ export default function Home() {
     </div>
   );
 }
-
-
 
 
 

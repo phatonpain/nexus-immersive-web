@@ -32,7 +32,8 @@ function App() {
         defaultTheme="dark"
         // switchable
       >
-        <div className="noise-overlay" />`n        <PremiumSpline type="hacker" />
+        <PremiumSpline type="orb" />
+        <div className="noise-overlay" aria-hidden="true" />
         <TooltipProvider>
           <Toaster />
           <SmoothScroll>
@@ -45,4 +46,3 @@ function App() {
 }
 
 export default App;
-
