@@ -1910,12 +1910,85 @@ html, html.dark, body, #root, .site-shell, .site-shell main {
 .hero-scene-space { min-height: 480px; pointer-events: none; }
 .hero > .tech-strip { grid-column: 1 / -1; width: min(100%, 600px); margin-inline: auto; }
 .noise-overlay { z-index: 49; pointer-events: none; }
+/* Bento surfaces with native-alpha decorative assets. */
+.services-grid, .plans-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px;
+  align-items: stretch;
+  border: 0;
+  border-radius: 0;
+}
+.services-grid > .service-card:first-child,
+.services-grid > .service-card:nth-child(n+4) { grid-column: span 2; }
+.plans-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.plans-grid > .plan-node:first-child,
+.plans-grid > .plan-node:last-child { grid-column: span 2; }
+.services-grid > .service-card,
+.plans-grid .plan-card {
+  position: relative;
+  isolation: isolate;
+  min-width: 0;
+  min-height: 384px;
+  padding: 32px 32px 64px;
+  border-radius: 24px;
+  background: rgba(20, 20, 25, .4) !important;
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, .05) !important;
+  transition: border-color .24s ease, box-shadow .24s ease;
+}
+.plans-grid .plan-node { display: flex; flex-direction: column; overflow: visible; background: transparent; }
+.plans-grid .plan-card { flex: 1; padding-bottom: 32px; }
+.plans-grid .builder-node-chrome { min-height: 40px; padding: 8px 16px; border-radius: 24px 24px 0 0; }
+.bento-art {
+  display: block;
+  width: 160px;
+  height: 160px;
+  margin: 0 auto 24px;
+  object-fit: contain;
+  pointer-events: none;
+  user-select: none;
+}
+.services-grid > .service-card:first-child .bento-art { width: 256px; height: 256px; }
+.services-grid .service-card-watermark { display: none; }
+.services-grid .node-grip-label { margin-bottom: 24px; gap: 16px; }
+.services-grid .node-grip-label::before { width: 32px; height: 8px; }
+.services-grid .service-card h3 { margin-top: 24px; }
+.services-grid .service-card p { min-height: 0; }
+.plans-grid .plan-head p { min-height: 0; }
+.plans-grid .plan-price { margin-block: 24px; padding-block: 16px; }
+.plans-grid .plan-card ul { gap: 16px; margin-bottom: 24px; }
+.plans-grid .plan-ribbon { top: 16px; right: 16px; }
+.services-grid .card-arrow { width: 40px; height: 40px; right: 24px; bottom: 24px; }
+.services-grid .service-card:hover, .plans-grid .plan-card:hover {
+  border-color: rgba(167, 139, 250, .4) !important;
+  box-shadow: 0 16px 48px -16px rgba(139, 92, 246, .24);
+}
+.site-shell :is(button, .button, .plan-cta, .card-arrow, .nav-cta):focus-visible {
+  outline: 2px solid #67e8f9;
+  outline-offset: 4px;
+}
+.site-shell :is(button, .button, .plan-cta, .card-arrow, .nav-cta):active {
+  filter: brightness(.85);
+}
+@media (max-width: 980px) {
+  .services-grid, .plans-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .services-grid > .service-card:nth-child(n+4) { grid-column: span 1; }
+  .plans-grid > .plan-node:first-child, .plans-grid > .plan-node:last-child { grid-column: span 1; }
+}
+@media (max-width: 620px) {
+  .services-grid, .plans-grid { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .services-grid > .service-card:first-child { grid-column: span 1; }
+  .services-grid > .service-card, .plans-grid .plan-card { padding: 24px 24px 64px; min-height: 0; }
+  .plans-grid .plan-card { padding-bottom: 24px; }
+  .services-grid > .service-card:first-child .bento-art { width: 224px; height: 224px; }
+}
 @media (max-width: 767px) {
   .hero { grid-template-columns: 1fr; }
   .hero-scene-space { display: none; }
   #root::after { background: rgba(7,9,13,.78); }
 }
-
 
 
 
